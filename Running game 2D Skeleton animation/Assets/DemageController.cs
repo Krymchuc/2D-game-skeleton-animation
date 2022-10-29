@@ -4,14 +4,22 @@ using UnityEngine;
 
 public class DemageController : MonoBehaviour
 {
-	public GameObject runner;	
+    public GameObject runner;
 
-	void OnTriggerEnter2D(Collider2D col){
-		if(col.CompareTag("Player")){
-			Damage();
-		}
-	}
-	void Damage(){
-		runner.SetActive(false);
-	}
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            Destroy(gameObject);
+        }
+        else if (collision.gameObject.CompareTag("Player"))
+        {
+            Damage();
+        }
+
+    }
+    void Damage()
+    {
+        runner.SetActive(false);
+    }
 }
